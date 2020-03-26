@@ -1,0 +1,121 @@
+    body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+        border: 0;
+        background-color: white;
+        font-size: 16px;
+        font-family: 'Baloo Da 2', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif, Helvetica;
+    }
+
+    p,li {
+        /*Las siguientes 3 lineas presetan una buena practica con css, esta es, utilizar medidas relativas en vez de pixeles*/
+        font-size: 1rem;
+        line-height: 1.25;
+        margin-bottom: 0.5em;
+        color:yellowgreen;
+    }
+
+    .contenedor {
+        display: grid;
+        grid-template-columns: [first] 100% [end];
+        grid-template-rows: [header] auto [body] auto [footer] auto [end];
+        grid-gap: 10px;
+        color: #444;
+        /*Las 3 siguientes lineas de codigo producen que el #contener llene por completo el cuerpo de la pagina.*/
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        grid-template-areas:
+            "header"
+            "main"
+            "footer";
+    }
+
+    .box {
+        background-color: white;
+        color: #fff;
+        border-radius: 5px;
+    }
+
+    .a {
+        grid-area: header;
+        grid-column: first / end;
+        grid-row: header / span 1;
+        background: repeating-linear-gradient(45deg, greenyellow 0%, #2b2b2b 10%, #222222 0%, #222222 50%) 0 / 15px 15px;
+    }
+
+    .b {
+        grid-area: main;
+        grid-column: first / end;
+        grid-row: body / span 1;
+        background: repeating-linear-gradient(45deg, greenyellow 0%, #2b2b2b 10%, #222222 0%, #222222 100%) 0 / 15px 15px;
+    }
+
+    .estado {
+        text-align: center;
+        font-size: 2em;
+        /*-webkit-animation: neon1 2s ease-in-out infinite alternate;
+        -moz-animation: neon1 2s ease-in-out infinite alternate;
+        animation: neon1 2s ease-in-out infinite alternate;*/
+        color: rgb(255,0,0,0.9);
+    }
+
+    @keyframes neon1 {
+        from {  
+          text-shadow: 0 0 10px red, 0 0 10px red, 0 0 30px red, 0 0 40px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 150px #FF1177;
+        }
+        to {
+          text-shadow: 0 0 5px red, 0 0 10px red, 0 0 15px red, 0 0 20px #FF1177, 0 0 35px #FF1177, 0 0 40px #FF1177, 0 0 50px #FF1177, 0 0 75px #FF1177;
+        }
+      }
+
+    .c {
+        grid-area: footer;
+        grid-column: first / end;
+        grid-row: footer / span 1;
+        background: repeating-linear-gradient(135deg, greenyellow 0%, #2b2b2b 10%, #222222 0%, #222222 50%) 0 / 15px 15px;
+    }
+
+    /*Las siguientes lineas seran dedicadas a la seccion que contiene el div con clase de nombre contenedor1
+    Momentaneamente se le asignara texto a esta seccion para el prototipado rapido de la misma*/
+    .contenedor1 {
+        display: grid;
+        grid-template-columns: [first] 1% [second] 97% [third] 2% [end];
+        grid-template-rows: [num1] 1% [contenido1] auto [num2] auto [end];
+        grid-gap: 0px;
+        color: yellowgreen;
+        justify-items: stretch;
+        grid-template-areas:
+            "costadoiz""content""costadoder"
+            "costadoiz""content""costadoder"
+            "costadoiz""content""costadoder";
+    }
+    /*Lo siguiente es muy importante*/
+    .a1 {
+        grid-area: content;
+        grid-column: second / span third;
+        grid-row: num1 / end;
+    }
+
+    .a2 {
+        grid-column: second / span third;
+        grid-row: num2 / end;
+    }
+
+    .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+    }
+
+    .parallax {
+        color: red;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+        font-size: 2rem;
+    }
