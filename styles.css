@@ -9,19 +9,11 @@
         font-family: 'Baloo Da 2', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif, Helvetica;
     }
 
-    p,li {
-        /*Las siguientes 3 lineas presetan una buena practica con css, esta es, utilizar medidas relativas en vez de pixeles*/
-        font-size: 1rem;
-        line-height: 1.25;
-        margin-bottom: 0.5em;
-        color:yellowgreen;
-    }
-
     .contenedor {
         display: grid;
         grid-template-columns: [first] 100% [end];
         grid-template-rows: [header] auto [body] auto [footer] auto [end];
-        grid-gap: 10px;
+        grid-gap: 1px;
         color: #444;
         /*Las 3 siguientes lineas de codigo producen que el #contener llene por completo el cuerpo de la pagina.*/
         position: absolute;
@@ -36,21 +28,22 @@
     .box {
         background-color: white;
         color: #fff;
-        border-radius: 5px;
+        border-radius: 0 0 0 1px;
     }
 
     .a {
         grid-area: header;
         grid-column: first / end;
         grid-row: header / span 1;
-        background: repeating-linear-gradient(45deg, greenyellow 0%, #2b2b2b 10%, #222222 0%, #222222 50%) 0 / 15px 15px;
+        background: repeating-linear-gradient(45deg, greenyellow 0%, #2b2b2b 10%, #222222 0%, #222222 50%) 0 / 50px 50px;
+        box-shadow: 0 0 10px 10px rgba(255, 0, 100, .4);
     }
 
     .b {
         grid-area: main;
         grid-column: first / end;
         grid-row: body / span 1;
-        background: repeating-linear-gradient(45deg, greenyellow 0%, #2b2b2b 10%, #222222 0%, #222222 100%) 0 / 15px 15px;
+        background: repeating-linear-gradient(45deg, greenyellow 0%, #2b2b2b 10%, #222222 0%, #222222 100%) 0 / 5px 5px;
     }
 
     .estado {
@@ -59,23 +52,24 @@
         /*-webkit-animation: neon1 2s ease-in-out infinite alternate;
         -moz-animation: neon1 2s ease-in-out infinite alternate;
         animation: neon1 2s ease-in-out infinite alternate;*/
-        color: rgb(255,0,0,0.9);
+        color: rgb(255, 0, 100);
     }
 
     @keyframes neon1 {
-        from {  
-          text-shadow: 0 0 10px red, 0 0 10px red, 0 0 30px red, 0 0 40px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 150px #FF1177;
+        from {
+            text-shadow: 0 0 10px red, 0 0 10px red, 0 0 30px red, 0 0 40px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 150px #FF1177;
         }
+
         to {
-          text-shadow: 0 0 5px red, 0 0 10px red, 0 0 15px red, 0 0 20px #FF1177, 0 0 35px #FF1177, 0 0 40px #FF1177, 0 0 50px #FF1177, 0 0 75px #FF1177;
+            text-shadow: 0 0 5px red, 0 0 10px red, 0 0 15px red, 0 0 20px #FF1177, 0 0 35px #FF1177, 0 0 40px #FF1177, 0 0 50px #FF1177, 0 0 75px #FF1177;
         }
-      }
+    }
 
     .c {
         grid-area: footer;
         grid-column: first / end;
         grid-row: footer / span 1;
-        background: repeating-linear-gradient(135deg, greenyellow 0%, #2b2b2b 10%, #222222 0%, #222222 50%) 0 / 15px 15px;
+        background: repeating-linear-gradient(135deg, greenyellow 0%, #2b2b2b 10%, #222222 0%, #222222 50%) 0 / 30px 30px;
     }
 
     /*Las siguientes lineas seran dedicadas a la seccion que contiene el div con clase de nombre contenedor1
@@ -92,6 +86,7 @@
             "costadoiz""content""costadoder"
             "costadoiz""content""costadoder";
     }
+
     /*Lo siguiente es muy importante*/
     .a1 {
         grid-area: content;
@@ -111,11 +106,44 @@
         width: 50%;
     }
 
-    .parallax {
-        color: red;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        width: 50%;
-        font-size: 2rem;
+    /*Nav bar*/
+    nav {
+        overflow: hidden;
     }
+
+    .navul:hover .logo {
+        color: rgb(255, 0, 100);
+        text-shadow: 0 0 10px rgba(255, 0, 100, .9);
+    }
+
+    .navul {
+        text-align: center;
+        height: 50px;
+    }
+
+    .logo {
+        display: inline-block;
+    }
+
+    .logox {
+        text-decoration: none;
+        line-height: 50px;
+        text-transform: uppercase;
+        padding: 50% 1px;
+        color: rgb(255, 0, 100);
+    }
+
+    .logox:hover {
+        border: 2px solid rgb(255, 0, 100);
+        background: rgba(255, 0, 100, .4);
+        box-shadow: 0 0 5px 1px rgb(255, 0, 100);
+        border-bottom: 10px solid rgb(255, 0, 100);
+
+    }
+
+    .logo {
+        float: left;
+        line-height: 50%;
+        font-size: 2em;
+    }
+

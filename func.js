@@ -78,7 +78,7 @@ function plotting(datax, datay, id, title) {
                 label: 'Cantidad:',
                 data: slicingy,
                 backgroundColor: [
-                    'rgba(255, 99, 132, 0.3)',
+                    'rgba(255, 0, 100, 0.3)',
                     'rgba(54, 162, 235, 0.3)',
                     'rgba(255, 206, 86, 0.3)',
                     'rgba(75, 192, 192, 0.3)',
@@ -90,7 +90,7 @@ function plotting(datax, datay, id, title) {
                     'rgba(20, 145, 255, 0.3)'
                 ],
                 borderColor: [
-                    'rgba(255, 99, 132, 1)',
+                    'rgba(255, 0, 100, 1)',
                     'rgba(54, 162, 235, 1)',
                     'rgba(255, 206, 86, 1)',
                     'rgba(75, 192, 192, 1)',
