@@ -1,8 +1,5 @@
-console.log('Primer linea javascript');
-
-async function getmeme() {
-    const corona = await fetch('https://coronavirus-19-api.herokuapp.com/countries'); 
-    const virus = await corona.json();
+onload();
+async function onload() {
     const titulo = await fetch('https://coronavirus-19-api.herokuapp.com/all');
     const cvt = await titulo.json();
     const titroot = document.createElement('Div');
@@ -16,6 +13,11 @@ async function getmeme() {
     const cvtt = document.getElementById('cv');
     cvtt.append(titroot);
     document.getElementById("cont a2").appendChild(cvtt);
+}
+
+async function collectData() {
+    const corona = await fetch('https://coronavirus-19-api.herokuapp.com/countries');
+    const virus = await corona.json();
     contador = 0;
     var t = [];
     var cas = [];
@@ -38,7 +40,7 @@ async function getmeme() {
         criticos[contador] = criti;
         activos[contador] = act;
         muertesHoy[contador] = xxx;
-     }
+    }
     return {
         paises: t,
         casos: cas,
@@ -48,34 +50,32 @@ async function getmeme() {
         muertosHoy: muertesHoy
     };
 }
-
 plot();
-
 async function plot() {
-    const x = await getmeme();
+    const x = await collectData();
     const datax = x.paises;
     const cases = x.casos;
     const deaths = x.muertes;
     const critical = x.criticos;
     const ac = x.activos;
     const mh = x.muertosHoy;
-    plotting(datax, cases,'casos','Casos');
-    plotting(datax, deaths,'muertes','Muertes totales');
-    plotting(datax, critical,'criticos','Pacientes críticos actualmente');
-    plotting(datax, ac,'activos','Pacientes activos');
-    plotting(datax, mh,'muertosHoy','Muertos hoy');
+    //plotting(datax, cases,'casos','Casos');
+    //plotting(datax, deaths,'muertes','Muertes totales');
+    //plotting(datax, critical,'criticos','Pacientes críticos actualmente');
+    //plotting(datax, ac,'activos','Pacientes activos');
+    plotting(datax, mh, 'muertosHoy', `Today's Deaths`);
 }
 
 function plotting(datax, datay, id, title) {
     var ct = document.getElementById(id).getContext('2d');
     const slicingx = datax.slice(1, 11);
-    const slicingy = datay.slice(1,11);
+    const slicingy = datay.slice(1, 11);
     var myChart = new Chart(ct, {
         type: 'horizontalBar',
         data: {
             labels: slicingx,
             datasets: [{
-                label: 'Cantidad:',
+                label: 'Amount:',
                 data: slicingy,
                 backgroundColor: [
                     'rgba(255, 0, 100, 0.3)',
@@ -146,4 +146,19 @@ function plotting(datax, datay, id, title) {
             defaultFontFamily: Chart.defaults.global.defaultFontFamily = "'Baloo Da 2'"
         }
     });
+}
+
+async function showOptionSelected() {
+    const dataToPlot = await collectData();
+    const countries = dataToPlot.paises;
+    const cases2 = dataToPlot.casos;
+    //document.querySelector('.botonDatos').style.transform = 'rotate(90deg)';
+    const divShowChartElement = document.createElement('Div');
+    const showChartElement = document.createElement('canvas');
+    showChartElement.setAttribute("id", "muertesNuevas");
+    showChartElement.setAttribute("height", 240);
+    divShowChartElement.append(showChartElement);
+    const opSelected = document.getElementById('showOptionSelected');
+    opSelected.append(showChartElement);
+    plotting(countries, cases2, 'muertesNuevas', 'Cases');
 }
