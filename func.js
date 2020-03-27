@@ -1,34 +1,21 @@
 console.log('Primer linea javascript');
 
 async function getmeme() {
-    //Corona virus data
-    const corona = await fetch('https://coronavirus-19-api.herokuapp.com/countries'); // this is a string so we want to convert it to json format.
+    const corona = await fetch('https://coronavirus-19-api.herokuapp.com/countries'); 
     const virus = await corona.json();
-    //console.log(virus);
-    //Titulo para el contenido covid-19
-    const titulo = await fetch('https://coronavirus-19-api.herokuapp.com/all'); // this is a string so we want to convert it to json format.
+    const titulo = await fetch('https://coronavirus-19-api.herokuapp.com/all');
     const cvt = await titulo.json();
-    //console.log(cvt);
-    //Presentacion de los datos:
     const titroot = document.createElement('Div');
-    //Div para cantidad de muerter global
     const mg = document.createElement('Div');
-    //Div para cantidad de casos globales
     const cg = document.createElement('Div');
-    //Div para cantidad de recuperados global
     const rg = document.createElement('Div');
     titroot.append(mg, cg, rg);
-    //Cantidad de muerter total:
     mg.textContent = `Total de muertes: ${cvt.deaths}`;
-    //Cantidad de casos total:
     cg.textContent = `Total de casos: ${cvt.cases}`;
-    //Cantidad de recuperados
     rg.textContent = `Recuperados: ${cvt.recovered}`;
     const cvtt = document.getElementById('cv');
-    //Enpaquetado de todo en el div padre de todos.
     cvtt.append(titroot);
     document.getElementById("cont a2").appendChild(cvtt);
-    //Presentacion de datos por pais.
     contador = 0;
     var t = [];
     var cas = [];
@@ -62,39 +49,27 @@ async function getmeme() {
     };
 }
 
-//Se invoca la funcion asyncrona.
 plot();
 
-//Creacion de graficos con el framework chart.js
 async function plot() {
-    //Are the next 2 lines a closure example??
     const x = await getmeme();
-    //Paises
     const datax = x.paises;
-    //Casos grafico 1
     const cases = x.casos;
-    //Muertes Grafico 2 
     const deaths = x.muertes;
-    //Pacientes en estado critico
     const critical = x.criticos;
-    //Pacientes actualmente con la enfermedad
     const ac = x.activos;
-    //Numero total de muertes hoy
     const mh = x.muertosHoy;
-    //Plots
-    plotting(datax, cases,'myChart','Número de casos mundialmente:');
-    plotting(datax, deaths,'myChart1','Número de muertes mundialmente:');
-    plotting(datax, critical,'myChart2','Pacientes en estado crítico mundialmente:');
-    plotting(datax, ac,'myChart3','Pacientes activos con la enfermedad:');
-    plotting(datax, mh,'myChart4','Muertos el día de hoy:');
+    plotting(datax, cases,'casos','Casos');
+    plotting(datax, deaths,'muertes','Muertes totales');
+    plotting(datax, critical,'criticos','Pacientes críticos actualmente');
+    plotting(datax, ac,'activos','Pacientes activos');
+    plotting(datax, mh,'muertosHoy','Muertos hoy');
 }
-//Esta funcion plotea los datos.
-function plotting(datax, datay,id,title) {
+
+function plotting(datax, datay, id, title) {
     var ct = document.getElementById(id).getContext('2d');
     const slicingx = datax.slice(1, 11);
     const slicingy = datay.slice(1,11);
-    //console.log(slicingx); ------Debugging------
-    //console.log(slicingy);
     var myChart = new Chart(ct, {
         type: 'horizontalBar',
         data: {
@@ -138,9 +113,7 @@ function plotting(datax, datay,id,title) {
                         fontColor: 'yellowgreen'
                     },
                     barPercentage: 0.9,
-                    barThickness: 8,
-                    maxBarThickness: 25,
-                    minBarLength: 2,
+                    maxBarThickness: 60,
                     minBarThickness: 8
                 }],
                 xAxes: [{
@@ -150,7 +123,10 @@ function plotting(datax, datay,id,title) {
                         max: datay[0],
                         min: 0,
                         stepSize: 1
-                    }
+                    },
+                    barPercentage: 0.9,
+                    maxBarThickness: 60,
+                    minBarThickness: 8
                 }]
             },
             legend: {
@@ -164,7 +140,7 @@ function plotting(datax, datay,id,title) {
                 display: true,
                 text: `${title}`,
                 fontColor: 'yellowgreen',
-                fontSize: 14
+                fontSize: 20
             },
             /*Problema solucionado gracias a la fuente: https://stackoverflow.com/questions/38304357/is-it-possible-to-add-a-custom-font-to-chart-js*/
             defaultFontFamily: Chart.defaults.global.defaultFontFamily = "'Baloo Da 2'"
