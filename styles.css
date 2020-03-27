@@ -35,8 +35,28 @@
         grid-area: header;
         grid-column: first / end;
         grid-row: header / span 1;
-        background: repeating-linear-gradient(45deg, greenyellow 0%, #2b2b2b 10%, #222222 0%, #222222 50%) 0 / 50px 50px;
+        background: repeating-linear-gradient(45deg, greenyellow 0%, #2b2b2b 2%, #222222 0%, #222222 50%) 0 / 150px 150px;
         box-shadow: 0 0 10px 10px rgba(255, 0, 100, .4);
+    }
+    
+    .contenerNav {
+        display: grid;
+        grid-template-columns: [logo] auto [links] auto [end];
+        grid-template-rows: [ndd] auto [end];
+        grid-gap: 0;
+        color: yellowgreen;
+        justify-items: stretch;
+    }
+    .Navea {
+        grid-area: content;
+        grid-column: logo / span links;
+        grid-row: ndd / span end;
+    }
+    .Naveb {
+        grid-area: links;
+        grid-column: links / span end;
+        grid-row: ndd / end;
+        color: yellowgreen;
     }
 
     .b {
@@ -49,31 +69,20 @@
     .estado {
         text-align: center;
         font-size: 2em;
-        /*-webkit-animation: neon1 2s ease-in-out infinite alternate;
-        -moz-animation: neon1 2s ease-in-out infinite alternate;
-        animation: neon1 2s ease-in-out infinite alternate;*/
         color: rgb(255, 0, 100);
     }
 
-    @keyframes neon1 {
-        from {
-            text-shadow: 0 0 10px red, 0 0 10px red, 0 0 30px red, 0 0 40px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 150px #FF1177;
-        }
-
-        to {
-            text-shadow: 0 0 5px red, 0 0 10px red, 0 0 15px red, 0 0 20px #FF1177, 0 0 35px #FF1177, 0 0 40px #FF1177, 0 0 50px #FF1177, 0 0 75px #FF1177;
-        }
+    .graficos {
+        border: 1px dotted rgb(255, 0, 100);
     }
 
     .c {
         grid-area: footer;
         grid-column: first / end;
         grid-row: footer / span 1;
-        background: repeating-linear-gradient(135deg, greenyellow 0%, #2b2b2b 10%, #222222 0%, #222222 50%) 0 / 30px 30px;
+        background: repeating-linear-gradient(135deg, greenyellow 0%, #2b2b2b 7%, #222222 0%, #222222 50%) 0 / 150px 150px;
     }
 
-    /*Las siguientes lineas seran dedicadas a la seccion que contiene el div con clase de nombre contenedor1
-    Momentaneamente se le asignara texto a esta seccion para el prototipado rapido de la misma*/
     .contenedor1 {
         display: grid;
         grid-template-columns: [first] 1% [second] 97% [third] 2% [end];
@@ -87,7 +96,6 @@
             "costadoiz""content""costadoder";
     }
 
-    /*Lo siguiente es muy importante*/
     .a1 {
         grid-area: content;
         grid-column: second / span third;
@@ -110,30 +118,29 @@
     nav {
         overflow: hidden;
     }
-
-    .navul:hover .logo {
+    .navul:hover {
         color: rgb(255, 0, 100);
         text-shadow: 0 0 10px rgba(255, 0, 100, .9);
     }
-
     .navul {
         text-align: center;
         height: 50px;
+        list-style-type: none;
     }
 
     .logo {
         display: inline-block;
+        line-height: 50%;
+        font-size: auto;
     }
-
     .logox {
         text-decoration: none;
         line-height: 50px;
         text-transform: uppercase;
-        padding: 50% 1px;
+        padding: 0;
         color: rgb(255, 0, 100);
     }
-
-    .logox:hover {
+    .logox:hover  {
         border: 2px solid rgb(255, 0, 100);
         background: rgba(255, 0, 100, .4);
         box-shadow: 0 0 5px 1px rgb(255, 0, 100);
@@ -141,9 +148,21 @@
 
     }
 
-    .logo {
-        float: left;
-        line-height: 50%;
-        font-size: 2em;
+    .links {
+        text-decoration: none;
+        line-height: 50px;
+        font-size: auto; 
+        text-transform: uppercase;
+        padding: 0;
+        color: rgb(255, 0, 100);
     }
+    .links:hover  {
+        border: 2px solid rgb(255, 0, 100);
+        background: rgba(255, 0, 100, .4);
+        box-shadow: 0 0 5px 1px rgb(255, 0, 100);
+        border-bottom: 10px solid rgb(255, 0, 100);
+
+    }
+
+    
 
