@@ -87,7 +87,7 @@
 
     .contenedor1 {
         display: grid;
-        grid-template-columns: [first] 1% [second] 97% [third] 2% [end];
+        grid-template-columns: [first] 2% [second] 75% [third] 23% [end];
         grid-template-rows: [num1] 1% [contenido1] auto [num2] auto [end];
         grid-gap: 0px;
         color: yellowgreen;
@@ -99,14 +99,18 @@
     }
 
     .a1 {
-        grid-area: content;
         grid-column: second / span third;
-        grid-row: num1 / end;
+        grid-row: num1 / num2;
     }
 
     .a2 {
-        grid-column: second / span third;
-        grid-row: num2 / end;
+        grid-column:  2 / 3;
+        grid-row: 3 / end;
+    }
+
+    .a3 {
+        grid-column: third / num2;
+        grid-row: num1 / end;
     }
 
     .center {
