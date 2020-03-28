@@ -63,7 +63,7 @@ async function plot() {
     //plotting(datax, deaths,'muertes','Muertes totales');
     //plotting(datax, critical,'criticos','Pacientes críticos actualmente');
     //plotting(datax, ac,'activos','Pacientes activos');
-    plotting(datax, mh, 'muertosHoy', `Today's Deaths`);
+    //plotting(datax, mh, 'muertosHoy', `Today's Deaths`);
 }
 
 function plotting(datax, datay, id, title) {
@@ -148,17 +148,69 @@ function plotting(datax, datay, id, title) {
     });
 }
 
-async function showOptionSelected() {
-    const dataToPlot = await collectData();
-    const countries = dataToPlot.paises;
-    const cases2 = dataToPlot.casos;
-    //document.querySelector('.botonDatos').style.transform = 'rotate(90deg)';
-    const divShowChartElement = document.createElement('Div');
-    const showChartElement = document.createElement('canvas');
-    showChartElement.setAttribute("id", "muertesNuevas");
-    showChartElement.setAttribute("height", 240);
-    divShowChartElement.append(showChartElement);
-    const opSelected = document.getElementById('showOptionSelected');
-    opSelected.append(showChartElement);
-    plotting(countries, cases2, 'muertesNuevas', 'Cases');
+async function showCasesSelected() {
+    var elementExists = document.getElementById("casosGlobalmente"); // null when page is loaded.
+    if (elementExists == null){
+        const revGraficos = document.getElementById("muertesGlobalmente");
+        //console.log(revGraficos);
+        if (revGraficos) {
+            console.log("Se eliminara el otro grafico");
+            document.getElementById("muertesGlobalmente").remove();
+        } else {
+            console.log("No Existe el grafico de muertes globalmente");
+        }
+        console.log('No existe el grafico de casos globalmente');
+        //console.log(elementExists); --> Debugging.
+        const dataToPlot = await collectData();
+        const countries = dataToPlot.paises;
+        const cases2 = dataToPlot.casos;
+        //document.querySelector('.botonDatos').style.transform = 'rotate(90deg)';
+        const divShowChartElement = document.createElement('Div');
+        const showChartElement = document.createElement('canvas');
+        showChartElement.setAttribute("id", "casosGlobalmente");
+        showChartElement.setAttribute("height", 240);
+        divShowChartElement.append(showChartElement);
+        const opSelected = document.getElementById('showOptionSelected');
+        opSelected.append(showChartElement);
+        plotting(countries, cases2, 'casosGlobalmente', 'Cases');
+        //document.getElementById("muertosHoy").remove();
+        var elementExists = document.getElementById("casosGlobalmente");//When button has been clicked at least one this line is not == null
+        //console.log(elementExists);
+    } else {
+        console.log('Si existe el grafico de casos globalmente.');
+    }
+}
+
+async function showDeathsSelected() {
+    var elementExists = document.getElementById("muertesGlobalmente"); // null when page is loaded.
+    if (elementExists == null){
+        const revGraficos = document.getElementById("casosGlobalmente");
+        //console.log(revGraficos);
+        if (revGraficos) {
+            console.log("Se eliminara el otro grafico");
+            document.getElementById("casosGlobalmente").remove();
+        } else {
+            console.log("No Existe el grafico de casos globalmente");
+        }
+        //document.getElementById("muertosHoy").remove();
+        console.log('No existe el grafico de muertes globalmente');
+        //console.log(elementExists); --> Debugging.
+        const dataToPlot = await collectData();
+        const countries = dataToPlot.paises;
+        const cases2 = dataToPlot.muertosHoy;
+        //document.querySelector('.botonDatos').style.transform = 'rotate(90deg)';
+        const divShowChartElement = document.createElement('Div');
+        const showChartElement = document.createElement('canvas');
+        showChartElement.setAttribute("id", "muertesGlobalmente");
+        showChartElement.setAttribute("height", 240);
+        divShowChartElement.append(showChartElement);
+        const opSelected = document.getElementById('showOption1Selected');
+        opSelected.append(showChartElement);
+        plotting(countries, cases2, 'muertesGlobalmente', `Today's Deaths`);
+        //document.getElementById("muertosHoy").remove();
+        var elementExists = document.getElementById("muertesGlobalmente");//When button has been clicked at least one this line is not == null
+        //console.log(elementExists);
+    } else {
+        console.log('Si existe el grafico de muertes globalmente.');
+    }
 }
