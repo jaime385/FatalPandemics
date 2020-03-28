@@ -70,7 +70,7 @@
 
     .estado {
         text-align: center;
-        font-size: 2em;
+        font-size: 18;
         color: rgb(255, 0, 100);
     }
 
@@ -104,13 +104,13 @@
     }
 
     .a2 {
-        grid-column:  2 / 3;
+        grid-column:  2 / end;
         grid-row: 3 / end;
     }
 
     .a3 {
         grid-column: third / num2;
-        grid-row: num1 / end;
+        grid-row: num1 / num2;
     }
 
     .center {
@@ -179,11 +179,12 @@
 
     .neon {
         text-align: center;
-        border-radius: 8px;
+        border-radius: 12px;
         border: 3px solid rgb(0, 40, 70);
+        width: 100%;
         cursor: pointer;
         color: rgb(255,0,100);
-        font-size: 2rem;
+        font-size: 18px;
         background-color: #444;
     }
 
