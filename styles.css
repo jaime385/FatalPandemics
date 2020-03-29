@@ -110,12 +110,12 @@
 
     .a3 {
         display: grid;
-        grid-template-columns: [firstM] 90% [linea] 10% [end];
-        grid-template-rows: [f1] 33% [contenido1] 33% [num2] auto [end];
+        grid-template-columns: [firstM] 99% [linea] 1% [end];
+        grid-template-rows: [f1] 34% [contenido1] 15% [num2] 15% [num3] 15% [num4] 15% [end];
         grid-column: third / num2;
         grid-row: num1 / num2;
         justify-items: stretch;
-        gap: 3px;
+        gap: 1%;
     }
 
     /*Styling the menu*/
@@ -131,7 +131,17 @@
 
     .mc {
         grid-column: 1 / 2;
-        grid-row: 3 / end;
+        grid-row: 3 / 4;
+    }
+
+    .md {
+        grid-column: 1 / 2;
+        grid-row: 4 / 5;
+    }
+
+    .me {
+        grid-column: 1 / 2;
+        grid-row: 5 / end;
     }
 
     .center {

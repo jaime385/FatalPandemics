@@ -29,8 +29,7 @@
         <div class="box b">
             <div class="contenedor1">
                 <div class="cont a1">
-                    <h1 class="estado">Covid-19</h1>
-                    <div>
+                        <h1 class="estado">Covid-19</h1>
                         <div id="showOption1Selected">
                             <!--Here it goes a canvas to be created.-->
                         </div>
@@ -40,22 +39,37 @@
                         <div id="showOption2Selected">
                             <!--Here it goes a canvas to be created.-->
                         </div>
-                    </div>
+                        <div id="showActivosSelected">
+                            <!--Here it goes a canvas to be created.-->
+                        </div>
+                        <div id="showTodayDeathsSelected">
+                            <!--Here it goes a canvas to be created.-->
+                        </div>
                 </div>
                 <div class="cont a3">
                     <div class="menuC ma">
-                        <button class="neon" onclick="showDeathsSelected()">
+                        <button class="neon" onclick="showTodayDeathsSelected()">
                             Today's Deaths
                         </button>
                     </div>
                     <div class="menuC mb">
                         <button class="neon" onclick="showCasesSelected()">
-                            # Cases
+                            Cases
                         </button>
                     </div>
                     <div class="menuC mc">
                         <button class="neon" onclick="showCriticalSelected()">
                             Critical
+                        </button>
+                    </div>
+                    <div class="menuC md">
+                        <button class="neon" onclick="showActivosSelected()">
+                            Active
+                        </button>
+                    </div>
+                    <div class="menuC me">
+                        <button class="neon" onclick="showDeathsSelected()">
+                            Deaths
                         </button>
                     </div>
                 </div>
