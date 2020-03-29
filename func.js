@@ -123,7 +123,7 @@ function plotting(datax, datay, id, title) {
             },
             title: {
                 display: true,
-                text: `${title}`,
+            text: `${title}`,
                 fontColor: 'yellowgreen',
                 fontSize: 20
             },
