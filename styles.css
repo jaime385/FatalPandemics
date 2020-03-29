@@ -206,17 +206,15 @@
         border-bottom: 10px solid rgb(255, 0, 100);
     }
 
-    .links {
+    a {
+        color: rgb(255, 0, 100);
         text-decoration: none;
-        line-height: 50px;
         font-size: auto;
         text-transform: uppercase;
-        padding: 0;
-        color: yellowgreen;
         border-radius: 2px;
     }
 
-    .links:hover {
+    a:hover {
         border: 2px solid rgb(255, 0, 100);
         background: rgba(255, 0, 100, .4);
         box-shadow: 0 -10px 10px 28px rgba(255, 0, 100, 0.5);
