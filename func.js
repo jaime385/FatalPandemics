@@ -146,7 +146,7 @@ async function showCasesSelected() {
             divShowChartElement.append(showChartElement);
             const opSelected = document.getElementById('showOptionSelected');
             opSelected.append(showChartElement);
-            plotting(countries, cases2, 'casosGlobalmente', `Cases`);
+            plotting(countries, cases2, 'casosGlobalmente', `Cases globally`);
     
             const revGraficoMuertes = document.getElementById("muertesGlobalmente");
             const revGraficoActivos = document.getElementById("activosGlobalmente");
@@ -203,11 +203,12 @@ async function showDeathsSelected() {
             divShowChartElement.append(showChartElement);
             const opSelected = document.getElementById('showOption1Selected');
             opSelected.append(showChartElement);
-            plotting(countries, cases2, 'muertesGlobalmente', `Deaths`);
+            plotting(countries, cases2, 'muertesGlobalmente', `Deaths globally`);
     
             const revGraficoCasos = document.getElementById("casosGlobalmente");
             const revGraficoActivos = document.getElementById("activosGlobalmente");
             const revGraficoCriticos = document.getElementById("criticosGlobalmente");
+            const revGraficoMuertes = document.getElementById("muertesTotalesGlobalmente");
             if (revGraficoCasos) {
                 console.log("Se eliminara el grafico de casos globalmente");
                 document.getElementById("casosGlobalmente").remove();  
@@ -220,7 +221,12 @@ async function showDeathsSelected() {
                         console.log("Se eliminara el grafico de criticos globalmente");
                         document.getElementById("criticosGlobalmente").remove();
                     } else {
-                        //Do nothing
+                        if (revGraficoMuertes) {
+                        console.log("Se eliminara el grafico de muertes globalmente");
+                        document.getElementById("muertesTotalesGlobalmente").remove();
+                        } else {
+                            //Do nothing
+                        }
                     }
                 }
             }
@@ -228,6 +234,7 @@ async function showDeathsSelected() {
             const revGraficoCasos = document.getElementById("casosGlobalmente");
             const revGraficoActivos = document.getElementById("activosGlobalmente");
             const revGraficoCriticos = document.getElementById("criticosGlobalmente");
+            const revGraficoMuertes = document.getElementById("muertesGlobalmente");
             if (revGraficoCasos) {
                 console.log("Se eliminara el grafico de casos globalmente");
                 document.getElementById("casosGlobalmente").remove();  
@@ -240,7 +247,12 @@ async function showDeathsSelected() {
                         console.log("Se eliminara el grafico de criticos globalmente");
                         document.getElementById("criticosGlobalmente").remove();
                     } else {
-                        //Do nothing
+                        if (revGraficoMuertes) {
+                        console.log("Se eliminara el grafico de muertes globalmente");
+                        document.getElementById("muertesGlobalmente").remove();
+                        } else {
+                            //Do nothing
+                        }
                     }
                 }
             }
@@ -260,32 +272,12 @@ async function showCriticalSelected() {
         divShowChartElement.append(showChartElement);
         const opSelected = document.getElementById('showOption2Selected');
         opSelected.append(showChartElement);
-        plotting(countries, cases2, 'criticosGlobalmente', `Critical`);
+        plotting(countries, cases2, 'criticosGlobalmente', `People in critical condition`);
 
         const revGraficoCasos = document.getElementById("casosGlobalmente");
         const revGraficoActivos = document.getElementById("activosGlobalmente");
         const revGraficoMuertos = document.getElementById("muertesGlobalmente");
-        //console.log(revGraficoCasos);
-        if (revGraficoCasos) {
-            console.log("Se eliminara el grafico de casos globalmente");
-            document.getElementById("casosGlobalmente").remove();  
-        } else {    
-            if (revGraficoActivos) {
-                console.log("Se eliminara el grafico de casos activos globalmente");
-                document.getElementById("activosGlobalmente").remove();
-            } else {
-                if (revGraficoMuertos) {
-                    console.log("Se eliminara el grafico de muertes globalmente");
-                    document.getElementById("muertesGlobalmente").remove();
-                } else {
-                    //Do nothing
-                }
-            }
-        }
-    } else {
-        const revGraficoCasos = document.getElementById("casosGlobalmente");
-        const revGraficoActivos = document.getElementById("activosGlobalmente");
-        const revGraficoMuertos = document.getElementById("muertesGlobalmente");
+        const revGraficoMuertosTotales = document.getElementById("muertesTotalesGlobalmente");
         //console.log(revGraficoCasos);
         if (revGraficoCasos) {
             console.log("Se eliminara el grafico de casos globalmente");
@@ -299,7 +291,177 @@ async function showCriticalSelected() {
                     console.log("Se eliminara el grafico de casos criticos globalmente");
                     document.getElementById("muertesGlobalmente").remove();
                 } else {
-                    //Do nothing
+                    if (revGraficoMuertosTotales) {
+                    console.log("Se eliminara el grafico de muertes totatles globalmente");
+                    document.getElementById("muertesTotalesGlobalmente").remove();
+                    } else {
+                        //Do nothing
+                    }
+                }
+            }
+        }
+    } else {
+        const revGraficoCasos = document.getElementById("casosGlobalmente");
+        const revGraficoActivos = document.getElementById("activosGlobalmente");
+        const revGraficoMuertos = document.getElementById("muertesGlobalmente");
+        const revGraficoMuertosTotales = document.getElementById("muertesTotalesGlobalmente");
+        //console.log(revGraficoCasos);
+        if (revGraficoCasos) {
+            console.log("Se eliminara el grafico de casos globalmente");
+            document.getElementById("casosGlobalmente").remove();  
+        } else {    
+            if (revGraficoActivos) {
+                console.log("Se eliminara el grafico de casos activos globalmente");
+                document.getElementById("activosGlobalmente").remove();
+            } else {
+                if (revGraficoMuertos) {
+                    console.log("Se eliminara el grafico de casos criticos globalmente");
+                    document.getElementById("muertesGlobalmente").remove();
+                } else {
+                    if (revGraficoMuertosTotales) {
+                    console.log("Se eliminara el grafico de muertes totatles globalmente");
+                    document.getElementById("muertesTotalesGlobalmente").remove();
+                    } else {
+                        //Do nothing
+                    }
+                }
+            }
+        }
+    }
+}
+
+async function showActivosSelected() {
+    var elementExists = document.getElementById("activosGlobalmente");
+    if (elementExists == null) {//Draw
+        const dataToPlot = await collectData();
+        const countries = dataToPlot.paises;
+        const cases2 = dataToPlot.activos;
+        const divShowChartElement = document.createElement('Div');
+        const showChartElement = document.createElement('canvas');
+        showChartElement.setAttribute("id", "activosGlobalmente");
+        showChartElement.setAttribute("height", 320);
+        divShowChartElement.append(showChartElement);
+        const opSelected = document.getElementById('showActivosSelected');
+        opSelected.append(showChartElement);
+        plotting(countries, cases2, 'activosGlobalmente', `Active cases`);
+
+        const revGraficoCasos = document.getElementById("casosGlobalmente");
+        const revGraficoCriticos = document.getElementById("criticosGlobalmente");
+        const revGraficoMuertos = document.getElementById("muertesGlobalmente");
+        const revGraficoMuertosTotales = document.getElementById("muertesTotalesGlobalmente");
+        if (revGraficoCasos) {
+            console.log("Se eliminara el grafico de casos globalmente");
+            document.getElementById("casosGlobalmente").remove();  
+        } else {    
+            if (revGraficoCriticos) {
+                console.log("Se eliminara el grafico de casos activos globalmente");
+                document.getElementById("criticosGlobalmente").remove();
+            } else {
+                if (revGraficoMuertos) {
+                    console.log("Se eliminara el grafico de muertes globalmente");
+                    document.getElementById("muertesGlobalmente").remove();
+                } else {
+                    if (revGraficoMuertosTotales) {
+                    console.log("Se eliminara el grafico de muertes totales globalmente");
+                    document.getElementById("muertesTotalesGlobalmente").remove();
+                    } else {
+                        //Do nothing
+                    }
+                }
+            }
+        }
+    } else {
+        const revGraficoCasos = document.getElementById("casosGlobalmente");
+        const revGraficoCriticos = document.getElementById("criticosGlobalmente");
+        const revGraficoMuertos = document.getElementById("muertesGlobalmente");
+        const revGraficoMuertosTotales = document.getElementById("muertesTotalesGlobalmente");
+        if (revGraficoCasos) {
+            console.log("Se eliminara el grafico de casos globalmente");
+            document.getElementById("casosGlobalmente").remove();  
+        } else {    
+            if (revGraficoCriticos) {
+                console.log("Se eliminara el grafico de casos activos globalmente");
+                document.getElementById("criticosGlobalmente").remove();
+            } else {
+                if (revGraficoMuertos) {
+                    console.log("Se eliminara el grafico de muertes globalmente");
+                    document.getElementById("muertesGlobalmente").remove();
+                } else {
+                    if (revGraficoMuertosTotales) {
+                    console.log("Se eliminara el grafico de muertes totales globalmente");
+                    document.getElementById("muertesTotalesGlobalmente").remove();
+                    } else {
+                        //Do nothing
+                    }
+                }
+            }
+        }
+    }
+}
+
+async function showTodayDeathsSelected() {
+    var elementExists = document.getElementById("muertesTotalesGlobalmente");
+    if (elementExists == null) {//Draw
+        const dataToPlot = await collectData();
+        const countries = dataToPlot.paises;
+        const cases2 = dataToPlot.muertosHoy;
+        const divShowChartElement = document.createElement('Div');
+        const showChartElement = document.createElement('canvas');
+        showChartElement.setAttribute("id", "muertesTotalesGlobalmente");
+        showChartElement.setAttribute("height", 320);
+        divShowChartElement.append(showChartElement);
+        const opSelected = document.getElementById('showTodayDeathsSelected');
+        opSelected.append(showChartElement);
+        plotting(countries, cases2, 'muertesTotalesGlobalmente', `Deaths globally`);
+
+        const revGraficoCasos = document.getElementById("casosGlobalmente");
+        const revGraficoActivos = document.getElementById("activosGlobalmente");
+        const revGraficoCriticos = document.getElementById("criticosGlobalmente");
+        const revGraficoMuertos = document.getElementById("muertesGlobalmente");
+        if (revGraficoCasos) {
+            console.log("Se eliminara el grafico de casos globalmente");
+            document.getElementById("casosGlobalmente").remove();  
+        } else {    
+            if (revGraficoActivos) {
+                console.log("Se eliminara el grafico de casos activos globalmente");
+                document.getElementById("activosGlobalmente").remove();
+            } else {
+                if (revGraficoCriticos) {
+                    console.log("Se eliminara el grafico de criticos globalmente");
+                    document.getElementById("criticosGlobalmente").remove();
+                } else {
+                    if (revGraficoMuertos) {
+                        console.log("Se eliminara el grafico de muertos de hoy");
+                        document.getElementById("muertesGlobalmente").remove();
+                    } else {
+                        //Do nothing
+                    }
+                }
+            }
+        }
+    } else {
+        const revGraficoCasos = document.getElementById("casosGlobalmente");
+        const revGraficoActivos = document.getElementById("activosGlobalmente");
+        const revGraficoCriticos = document.getElementById("criticosGlobalmente");
+        const revGraficoMuertos = document.getElementById("muertesGlobalmente");
+        if (revGraficoCasos) {
+            console.log("Se eliminara el grafico de casos globalmente");
+            document.getElementById("casosGlobalmente").remove();  
+        } else {    
+            if (revGraficoActivos) {
+                console.log("Se eliminara el grafico de casos activos globalmente");
+                document.getElementById("activosGlobalmente").remove();
+            } else {
+                if (revGraficoCriticos) {
+                    console.log("Se eliminara el grafico de criticos globalmente");
+                    document.getElementById("criticosGlobalmente").remove();
+                } else {
+                    if (revGraficoMuertos) {
+                        console.log("Se eliminara el grafico de muertos de hoy");
+                        document.getElementById("muertesGlobalmente").remove();
+                    } else {
+                        //Do nothing
+                    }
                 }
             }
         }
