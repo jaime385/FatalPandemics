@@ -1,6 +1,11 @@
-    body {
+    /*Defaults*/
+    *{
         margin: 0;
         padding: 0;
+        list-style: none;
+        text-decoration:none;
+    }
+    body {
         height: 100%;
         width: 100%;
         border: 0;
@@ -33,32 +38,49 @@
 
     .a {
         grid-area: header;
-        grid-column: first / end;
-        grid-row: header / span 1;
+        grid-column: 1 / end;
+        grid-row: 1 / 2;
         background: repeating-linear-gradient(45deg, greenyellow 0%, #2b2b2b 2%, #222222 0%, #222222 50%) 0 / 150px 150px;
         box-shadow: 0 0 10px 10px rgba(255, 0, 100, .4);
-    }
-
-    .contenerNav {
+        position: fixed;
+        justify-items: stretch;
+        width: 100%;
+        height: 12.5%;
         display: grid;
-        grid-template-columns: [logo] auto [links] auto [end];
-        grid-template-rows: [ndd] auto [end];
+        grid-template-columns: [logo] 70% [links] auto [end];
+        grid-template-rows: [ndd] 100% [end];
         grid-gap: 0;
         color: yellowgreen;
-        justify-items: stretch;
     }
 
     .Navea {
-        grid-area: content;
-        grid-column: logo / span links;
-        grid-row: ndd / span end;
+        display: grid;
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+        grid-template-columns: [fa] 22% [fb] 70% [fc] auto [end];
+        grid-template-rows: [fd] 30% [fe] 50% [ff] 20%;
+        justify-items: stretch;
+        color: rgb(255, 0, 100)
     }
 
-    .Naveb {
-        grid-area: links;
-        grid-column: links / span end;
+    .NaveaSon {
+        grid-column: fb / fc;
+        grid-row: 2 / 3;
+    }
+
+    .NavMenu {
+        display: grid;
+        grid-column: 2 / 3;
         grid-row: ndd / end;
-        color: yellowgreen;
+        justify-items: stretch;
+        grid-template-columns: [r1] 20% [r2] 70% [r3] auto [end];
+        grid-template-rows: [fd] 30% [fe] 50% [ff] 20%;
+        color: rgb(255, 0, 100)
+    }
+
+    .NaveMenuSon {
+        grid-column: 2 / 3;
+        grid-row: 2 / 3;
     }
 
     .b {
@@ -74,10 +96,6 @@
         color: rgb(255, 0, 100);
     }
 
-    /*.graficos {
-        border: 1px dotted rgb(255, 0, 100);
-    }*/
-
     .c {
         grid-area: footer;
         grid-column: first / end;
@@ -87,8 +105,8 @@
 
     .contenedor1 {
         display: grid;
-        grid-template-columns: [first] 2% [second] 75% [third] 23% [end];
-        grid-template-rows: [num1] 1% [contenido1] auto [num2] auto [end];
+        grid-template-columns: [first] 0% [second] 83% [third] 10% [end];
+        grid-template-rows: [num1] 2% [contenido1] auto [num2] auto [end];
         grid-gap: 0px;
         color: yellowgreen;
         justify-items: stretch;
@@ -101,6 +119,7 @@
     .a1 {
         grid-column: second / span third;
         grid-row: num1 / num2;
+        justify-items: stretch;
     }
 
     .a2 {
@@ -111,9 +130,9 @@
     .a3 {
         display: grid;
         grid-template-columns: [firstM] 99% [linea] 1% [end];
-        grid-template-rows: [f1] 34% [contenido1] 15% [num2] 15% [num3] 15% [num4] 15% [end];
+        grid-template-rows: [f1] 28% [contenido1] 17% [num2] 17% [num3] 17% [num4] 17% [end];
         grid-column: third / num2;
-        grid-row: num1 / num2;
+        grid-row: 2 / num2;
         justify-items: stretch;
         gap: 1%;
     }
@@ -122,6 +141,7 @@
     .ma {
         grid-column: 1 / 2;
         grid-row: 1 / 2;
+        /*transform: rotate(90deg); /* Standard syntax */
     }
 
     .mb {
@@ -163,14 +183,11 @@
 
     .navul {
         text-align: center;
-        height: 50px;
         list-style-type: none;
     }
 
     .logo {
         display: inline-block;
-        line-height: 50%;
-        font-size: auto;
     }
 
     .logox {
@@ -216,7 +233,7 @@
         height: 100%;
         cursor: pointer;
         color: rgb(255, 0, 100);
-        font-size: 18px;
+        font-size: 10px;
         background-color: #444;
     }
 
@@ -314,3 +331,7 @@
             text-shadow: 0 0 15px rgb(230, 0, 120);
         }
     }
+
+    /*.Charts{
+        border: 1px dotted red;
+    }*/
