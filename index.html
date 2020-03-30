@@ -16,40 +16,47 @@
         <div class="box a">
             <div class="Navea">
                 <div class="NaveaSon">
-                    <p><i class="fas fa-skull-crossbones"></i> Fatal Pandemics</p>
+                    <div>
+                    <p><i class="fas fa-skull-crossbones fa-lg"></i><strong> Fatal Pandemics</strong></p>
+                    </div>
                 </div>
             </div>
             <div class="NavMenu">
                 <div class="NaveMenuSon">
-                    <a href="#" class="menuLink"><i class="fas fa-book-dead"></i>Menu</a>
+                    <a href="#" class="menuLink"><i class="fas fa-book-dead fa-lg"></i> Menu</a>
                 </div>
             </div>
         </div>
         <div class="box b">
             <div class="contenedor1">
-                <div class="cont a1">
-                    <br>
+                <div class="covid19">
                     <h1 class="estado"><i class="fas fa-biohazard fa-lg"></i> Covid-19</h1>
-                    <div id="showOption1Selected">
-                        <!--Here it goes a canvas to be created.-->
-                    </div>
-                    <div id="showOptionSelected">
-                        <!--Here it goes a canvas to be created.-->
-                    </div>
-                    <div id="showOption2Selected">
-                        <!--Here it goes a canvas to be created.-->
-                    </div>
-                    <div id="showActivosSelected">
-                        <!--Here it goes a canvas to be created.-->
-                    </div>
-                    <div id="showTodayDeathsSelected">
-                        <!--Here it goes a canvas to be created.-->
+                </div>
+                <div class="cont a1">
+
+                    <div id="chartsGoHere"></div>
+                    <div class="navigationData">
+                        <div class="navigationLeft">
+                            <button class="neon" onclick="setIntervalButtonLeft()">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                        </div>
+                        <div class="navigationValue">
+                            <button id="navigationInput" class="neon" >
+                                1
+                            </button>
+                        </div>
+                        <div class="navigationRight">
+                            <button class="neon" onclick="setIntervalButtonRight()">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <div class="cont a3">
                     <div class="menuC ma">
                         <button class="neon" onclick="showTodayDeathsSelected()">
-                            <i class="fas fa-skull-crossbones"></i> Today's Deaths
+                            <i class="fas fa-skull-crossbones fa-lg"></i> Today's Deaths
                         </button>
                     </div>
                     <div class="menuC mb">
@@ -59,21 +66,22 @@
                     </div>
                     <div class="menuC mc">
                         <button class="neon" onclick="showCriticalSelected()">
-                            <i class="fas fa-procedures"></i> Critical
+                            <i class="fas fa-procedures fa-lg"></i> Critical
                         </button>
                     </div>
                     <div class="menuC md">
                         <button class="neon" onclick="showActivosSelected()">
-                            <i class="fas fa-radiation"></i> Active
+                            <i class="fas fa-radiation fa-lg"></i> Active
                         </button>
                     </div>
                     <div class="menuC me">
                         <button class="neon" onclick="showDeathsSelected()">
-                            <i class="fas fa-skull-crossbones"></i> Deaths
+                            <i class="fas fa-skull-crossbones fa-lg"></i> Deaths
                         </button>
                     </div>
                 </div>
                 <div id="cont a2" class="cont a2">
+                    <br>
                     <h2>
                         <div id="cv" class="estado"></div>
                     </h2>
