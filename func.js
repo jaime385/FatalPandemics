@@ -59,6 +59,7 @@ async function collectData() {
 }
 
 function plotting(datax, datay, id, title, dataSetInterval) {
+    //Boiler plate code.
     var interval = [];
     if (dataSetInterval == 1) {
         interval[0] = 0;
@@ -102,6 +103,7 @@ function plotting(datax, datay, id, title, dataSetInterval) {
     }
 
     var ct = document.getElementById(id).getContext('2d');
+    //ct.setAttribute("style", "height: 400px;");
     const slicingx = datax.slice(interval[0], interval[1]);
     const slicingy = datay.slice(interval[0], interval[1]);
     var myChart = new Chart(ct, {
@@ -177,14 +179,12 @@ async function showCasesSelected() {
         const casosTotales = sumatoriaElementosArray(Object.values(cases2));
         const divShowChartElement = document.createElement('Div');
         const showChartElement = document.createElement('canvas');
+        showChartElement.setAttribute("height", "450px");
         showChartElement.setAttribute("id", "casosGlobalmente");
-        showChartElement.setAttribute("height", 500);
-        showChartElement.setAttribute("class", "charts");
         divShowChartElement.append(showChartElement);
         const opSelected = document.getElementById('chartsGoHere');
         opSelected.append(showChartElement);
         const intervalSelected = document.getElementById("navigationInput").textContent;
-        console.log(parseInt(intervalSelected));
         plotting(countries, cases2, 'casosGlobalmente', `Cases globally: ${casosTotales}`, parseInt(intervalSelected));
 
         const revGraficoMuertes = document.getElementById("muertesGlobalmente");
@@ -243,7 +243,6 @@ async function showDeathsSelected() {
         const countries = dataToPlot.paises;
         const muertes = dataToPlot.muertes;
         const muertesTotales = sumatoriaElementosArray(Object.values(muertes));
-        console.log(muertesTotales);
         const divShowChartElement = document.createElement('Div');
         const showChartElement = document.createElement('canvas');
         showChartElement.setAttribute("id", "muertesGlobalmente");
@@ -252,7 +251,6 @@ async function showDeathsSelected() {
         const opSelected = document.getElementById('chartsGoHere');
         opSelected.append(showChartElement);
         const intervalSelected = document.getElementById("navigationInput").textContent;
-        console.log(parseInt(intervalSelected));
         plotting(countries, muertes, 'muertesGlobalmente', `Total Deaths: ${muertesTotales}`, parseInt(intervalSelected));
         const revGraficoCasos = document.getElementById("casosGlobalmente");
         const revGraficoActivos = document.getElementById("activosGlobalmente");
@@ -310,7 +308,6 @@ async function showCriticalSelected() {
         const countries = dataToPlot.paises;
         const critical = dataToPlot.criticos;
         const criticosTotales = sumatoriaElementosArray(Object.values(critical));
-        console.log(criticosTotales);
         const divShowChartElement = document.createElement('Div');
         const showChartElement = document.createElement('canvas');
         showChartElement.setAttribute("id", "criticosGlobalmente");
@@ -375,7 +372,6 @@ async function showActivosSelected() {
         const countries = dataToPlot.paises;
         const activos = dataToPlot.activos;
         const activosTotales = sumatoriaElementosArray(Object.values(activos));
-        console.log(activosTotales);
         const divShowChartElement = document.createElement('Div');
         const showChartElement = document.createElement('canvas');
         showChartElement.setAttribute("id", "activosGlobalmente");
@@ -504,22 +500,12 @@ function sumatoriaElementosArray(array) {
     var sumatoria = 0;
     for (i = 0; i <= array.length - 1; i++) {
         sumatoria = sumatoria + array[i];
-        //console.log(sumatoria);
     }
     return sumatoria;
 };
 
-/*Debigging
-const strin = "2";
-const num = 3;
-var x = document.getElementById("navigationInput").textContent;
-console.log(parseInt(x));
-console.log(parseInt(strin)*parseInt(x));
-*/
-
 function setIntervalButtonLeft() {
     var intervalSelected = parseInt(document.getElementById("navigationInput").textContent);
-    console.log(intervalSelected);//Debugging
     if (intervalSelected > 1) {
         document.getElementById("navigationInput").textContent = intervalSelected - 1;
     } else {
@@ -529,7 +515,6 @@ function setIntervalButtonLeft() {
 
 function setIntervalButtonRight() {
     var intervalSelected = parseInt(document.getElementById("navigationInput").textContent);
-    console.log(intervalSelected); //Debigging
     if (intervalSelected < 13) {
         document.getElementById("navigationInput").textContent = intervalSelected + 1;
     } else {
@@ -537,20 +522,108 @@ function setIntervalButtonRight() {
     }
 }
 
-
-
-
 function menuClicked() {
     const divMenu = document.createElement('Div');
     divMenu.setAttribute("class", "menuShowingUp")
     divMenu.setAttribute("id", "menuContent")
-    divMenu.setAttribute("style", "height: 250px; background-color: rgba(0, 0, 0, 0.6);");
+    divMenu.setAttribute("style", "height: 400px; background-color: rgba(0, 0, 0, 0.5);");
+    
+    const divMenuChild1 = document.createElement('Div');
+    divMenuChild1.setAttribute("class", "menuShowingUpChild1");
+    divMenuChild1.setAttribute("id", "menuShowingUpChild1");
+    const divMenuChild1Button = document.createElement('button');
+    divMenuChild1Button.setAttribute("id", "divMenuChild1Button");
+    divMenuChild1Button.setAttribute("class", "menuLinkButtons");
+
+    const divMenuChild2 = document.createElement('Div');
+    divMenuChild2.setAttribute("class", "menuShowingUpChild2");
+    divMenuChild2.setAttribute("id", "menuShowingUpChild2");
+    const divMenuChild2Button = document.createElement('button');
+    divMenuChild2Button.setAttribute("id", "divMenuChild2Button");
+    divMenuChild2Button.setAttribute("class", "menuLinkButtons");
+
+    
+    const divMenuChild3 = document.createElement('Div');
+    divMenuChild3.setAttribute("class", "menuShowingUpChild3");
+    divMenuChild3.setAttribute("id", "menuShowingUpChild3");
+    const divMenuChild3Button = document.createElement('button');
+    divMenuChild3Button.setAttribute("class", "menuLinkButtons");
+    
+    const divMenuChild4 = document.createElement('Div');
+    divMenuChild4.setAttribute("class", "menuShowingUpChild4");
+    divMenuChild4.setAttribute("id", "menuShowingUpChild4");
+    const divMenuChild4Button = document.createElement('button');
+    divMenuChild4Button.setAttribute("id", "divMenuChild4Button");
+    divMenuChild4Button.setAttribute("class", "menuLinkButtons");
+    
     const headContentId = document.getElementById("menuContent");
-    //console.log(headContentId); Debugging
     if (headContentId == null) {
-        document.getElementById("headContent").appendChild(divMenu);
+        document.getElementById("headContent").append(divMenu);
+        const aboutsIcon = document.createElement('i');
+        aboutsIcon.setAttribute("class", "fas fa-skull-crossbones fa-lg");
+        document.getElementById("menuContent").append(divMenuChild1);
+        document.getElementById("menuShowingUpChild1").append(divMenuChild1Button);
+        document.getElementById("divMenuChild1Button").textContent = `ABOUT `;
+        document.getElementById("divMenuChild1Button").appendChild(aboutsIcon);
+        divMenuChild1Button.setAttribute("onClick", "aboutButton()");
+        
+        document.getElementById("menuContent").append(divMenuChild2);
+        document.getElementById("menuShowingUpChild2").append(divMenuChild2Button);
+
+        
+        document.getElementById("menuContent").append(divMenuChild3);
+        document.getElementById("menuShowingUpChild3").append(divMenuChild3Button);
+
+        const closesIcon = document.createElement('i');
+        closesIcon.setAttribute("class", "fas fa-times fa-lg");
+        document.getElementById("menuContent").append(divMenuChild4);
+        document.getElementById("menuShowingUpChild4").append(divMenuChild4Button);
+        document.getElementById("divMenuChild4Button").textContent = `CLOSE `;
+        document.getElementById("divMenuChild4Button").appendChild(closesIcon);
+        divMenuChild4Button.setAttribute("onClick", "closeButton()");
     } else {
         document.getElementById("menuContent").remove();
-        //console.log("removing"); Debugging
     }
 }
+
+function closeButton() {
+    document.getElementById("menuContent").remove();
+}
+
+
+function aboutButton() {
+    alert("This website presents information about the Covid-19 pandemic.");
+}
+
+
+
+
+
+/*Must understand this code.
+document.addEventListener('keydown', (event) => {
+    const keyName = event.key;
+  
+    if (keyName === 'Control') {
+      // do not alert when only Control key is pressed.
+      return;
+    }
+  
+    if (event.ctrlKey) {
+      // Even though event.key is not 'Control' (e.g., 'a' is pressed),
+      // event.ctrlKey may be true if Ctrl key is pressed at the same time.
+      alert(`Combination of ctrlKey + ${keyName}`);
+    } else {
+      alert(`Key pressed ${keyName}`);
+    }
+  }, false);
+  
+  document.addEventListener('keyup', (event) => {
+    const keyName = event.key;
+  
+    // As the user releases the Ctrl key, the key is no longer active,
+    // so event.ctrlKey is false.
+    if (keyName === 'Control') {
+      alert('Control key was released');
+    }
+  }, false);
+  */
