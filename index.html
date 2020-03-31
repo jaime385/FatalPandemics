@@ -13,17 +13,19 @@
 
 <body>
     <div class="contenedor">
-        <div class="box a">
+        <div id="headContent" class="box a">
             <div class="Navea">
                 <div class="NaveaSon">
                     <div>
-                    <p><i class="fas fa-skull-crossbones fa-lg"></i><strong> Fatal Pandemics</strong></p>
+                        <p><i class="fas fa-skull-crossbones fa-lg"></i><strong> Fatal Pandemics</strong></p>
                     </div>
                 </div>
             </div>
             <div class="NavMenu">
                 <div class="NaveMenuSon">
-                    <a href="#" class="menuLink"><i class="fas fa-book-dead fa-lg"></i> Menu</a>
+                    <button class="neon" onclick="menuClicked()">
+                        <i class="fas fa-book-dead fa-lg"></i> Menu
+                    </button>
                 </div>
             </div>
         </div>
@@ -33,7 +35,6 @@
                     <h1 class="estado"><i class="fas fa-biohazard fa-lg"></i> Covid-19</h1>
                 </div>
                 <div class="cont a1">
-
                     <div id="chartsGoHere"></div>
                     <div class="navigationData">
                         <div class="navigationLeft">
@@ -42,7 +43,7 @@
                             </button>
                         </div>
                         <div class="navigationValue">
-                            <button id="navigationInput" class="neon" >
+                            <button id="navigationInput" class="neon">
                                 1
                             </button>
                         </div>

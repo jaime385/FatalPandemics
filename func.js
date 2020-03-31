@@ -112,14 +112,14 @@ function plotting(datax, datay, id, title, dataSetInterval) {
                 label: `Group: ${dataSetInterval}, Amount`,
                 data: slicingy,
                 backgroundColor: [
-                    'rgba(255, 0, 100, 0.3)','rgba(54, 162, 235, 0.3)','rgba(255, 206, 86, 0.3)','rgba(75, 192, 192, 0.3)','rgba(72, 112, 132, 0.3)','rgba(167, 162, 235, 0.3)',
-                    'rgba(255, 20, 111, 0.3)','rgba(75, 192, 192, 0.3)','rgba(40, 112, 89, 0.3)','rgba(20, 145, 255, 0.3)','rgba(255, 0, 100, 0.3)','rgba(54, 162, 235, 0.3)',
-                    'rgba(255, 206, 86, 0.3)','rgba(75, 192, 192, 0.3)','rgba(72, 112, 132, 0.3)'
+                    'rgba(255, 0, 100, 0.3)', 'rgba(54, 162, 235, 0.3)', 'rgba(255, 206, 86, 0.3)', 'rgba(75, 192, 192, 0.3)', 'rgba(72, 112, 132, 0.3)', 'rgba(167, 162, 235, 0.3)',
+                    'rgba(255, 20, 111, 0.3)', 'rgba(75, 192, 192, 0.3)', 'rgba(40, 112, 89, 0.3)', 'rgba(20, 145, 255, 0.3)', 'rgba(255, 0, 100, 0.3)', 'rgba(54, 162, 235, 0.3)',
+                    'rgba(255, 206, 86, 0.3)', 'rgba(75, 192, 192, 0.3)', 'rgba(72, 112, 132, 0.3)'
                 ],
                 borderColor: [
-                    'rgba(255, 0, 100, 1)','rgba(54, 162, 235, 1)','rgba(255, 206, 86, 1)','rgba(75, 192, 192, 1)','rgba(72, 112, 132, 1)','rgba(167, 162, 235, 1)',
-                    'rgba(255, 20, 111, 1)','rgba(75, 192, 192, 1)','rgba(40, 112, 89, 1)','rgba(20, 145, 255, 1)','rgba(255, 0, 100,1)','rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)','rgba(75, 192, 192, 1)','rgba(72, 112, 132, 1)'
+                    'rgba(255, 0, 100, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(72, 112, 132, 1)', 'rgba(167, 162, 235, 1)',
+                    'rgba(255, 20, 111, 1)', 'rgba(75, 192, 192, 1)', 'rgba(40, 112, 89, 1)', 'rgba(20, 145, 255, 1)', 'rgba(255, 0, 100,1)', 'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(72, 112, 132, 1)'
                 ],
                 borderWidth: 1.5
             }]
@@ -179,7 +179,7 @@ async function showCasesSelected() {
         const showChartElement = document.createElement('canvas');
         showChartElement.setAttribute("id", "casosGlobalmente");
         showChartElement.setAttribute("height", 500);
-        showChartElement.setAttribute("class", "Charts");
+        showChartElement.setAttribute("class", "charts");
         divShowChartElement.append(showChartElement);
         const opSelected = document.getElementById('chartsGoHere');
         opSelected.append(showChartElement);
@@ -212,7 +212,7 @@ async function showCasesSelected() {
         const cases2 = dataToPlot.casos;
         const casosTotales = sumatoriaElementosArray(Object.values(cases2));
         const intervalSelected = document.getElementById("navigationInput").textContent;
-        plotting(countries, cases2, 'casosGlobalmente', `Cases globally: ${casosTotales}`, parseInt(intervalSelected) );
+        plotting(countries, cases2, 'casosGlobalmente', `Cases globally: ${casosTotales}`, parseInt(intervalSelected));
 
         const revGraficoMuertes = document.getElementById("muertesGlobalmente");
         const revGraficoActivos = document.getElementById("activosGlobalmente");
@@ -534,5 +534,23 @@ function setIntervalButtonRight() {
         document.getElementById("navigationInput").textContent = intervalSelected + 1;
     } else {
         document.getElementById("navigationInput").textContent = 13;
+    }
+}
+
+
+
+
+function menuClicked() {
+    const divMenu = document.createElement('Div');
+    divMenu.setAttribute("class", "menuShowingUp")
+    divMenu.setAttribute("id", "menuContent")
+    divMenu.setAttribute("style", "height: 250px; background-color: rgba(0, 0, 0, 0.6);");
+    const headContentId = document.getElementById("menuContent");
+    //console.log(headContentId); Debugging
+    if (headContentId == null) {
+        document.getElementById("headContent").appendChild(divMenu);
+    } else {
+        document.getElementById("menuContent").remove();
+        //console.log("removing"); Debugging
     }
 }
