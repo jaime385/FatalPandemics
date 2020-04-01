@@ -592,6 +592,7 @@ function menuClicked() {
         document.getElementById("menuShowingUpChild2").append(divMenuChild2Button);
         document.getElementById("divMenuChild2Button").textContent = `Contact `;
         document.getElementById("divMenuChild2Button").appendChild(contactIcon);
+        divMenuChild2Button.setAttribute("onClick", "contactButton()");
 
         const locationIcon = document.createElement('i');
         locationIcon.setAttribute("class", "fas fa-map-pin fa-lg");
@@ -613,6 +614,10 @@ function menuClicked() {
     }
 }
 
+function contactButton() {
+    document.getElementById('socialMedia').scrollIntoView();
+}
+
 function closeButton() {
     document.getElementById("menuContent").remove();
 }
@@ -623,14 +628,13 @@ function aboutButton() {
 }
 
 async function dataAtButton() {
-    const countryForApiCall = document.getElementById("usersCountryData").textContent;
-    const divVerification = document.getElementById("usersCountryDataChild").textContent;
     if ("geolocation" in navigator) {
         navigator.geolocation.getCurrentPosition(async position => {
             const country = await fetch('https://ipapi.co/json/');
             const countryJson = await country.json();
             console.log(countryJson);
             document.getElementById("usersCountryData").textContent = `${countryJson.country_name}`;
+            const divVerification = document.getElementById("usersCountryDataChild").textContent;
             if (divVerification == "") {
                 console.log("Div vacio");
                 const dataUsersCountry = await fetch(`https://coronavirus-19-api.herokuapp.com/countries/${countryJson.country_name}`);
