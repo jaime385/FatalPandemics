@@ -2,11 +2,12 @@ onload();
 async function onload() {
     const titulo = await fetch('https://coronavirus-19-api.herokuapp.com/all');
     const cvt = await titulo.json();
-    const x = $.getJSON('http://ip-api.com/json/', async function (data) {
+    const x = $.getJSON('https://ipapi.co/json/', async function (data) {
+        console.log(data);
         const usersCountryDiv = document.createElement('Div');
         usersCountryDiv.setAttribute("id", "usersCountry");
         usersCountryDiv.setAttribute("class", "country");
-        usersCountryDiv.textContent = `${data.country}`;
+        usersCountryDiv.textContent = `${data.country_name}`;
         const idCv = document.getElementById('usersCountryData');
         idCv.append(usersCountryDiv);
     });
@@ -623,7 +624,7 @@ async function dataAtButton() {
         console.log("Div vacio");
         const dataUsersCountry = await fetch(`https://coronavirus-19-api.herokuapp.com/countries/${countryForApiCall}`);
         const dataCountry = await dataUsersCountry.json();
-        console.log(dataCountry);
+        //console.log(dataCountry);
         const country = document.createElement('Div');
         const countrysCases = document.createElement('Div');
         const countrysTodayCases = document.createElement('Div');
