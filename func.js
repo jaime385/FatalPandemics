@@ -2,15 +2,6 @@ onload();
 async function onload() {
     const titulo = await fetch('https://coronavirus-19-api.herokuapp.com/all');
     const cvt = await titulo.json();
-    const x = $.getJSON('https://ipapi.co/json/', async function (data) {
-        console.log(data);
-        const usersCountryDiv = document.createElement('Div');
-        usersCountryDiv.setAttribute("id", "usersCountry");
-        usersCountryDiv.setAttribute("class", "country");
-        usersCountryDiv.textContent = `${data.country_name}`;
-        const idCv = document.getElementById('usersCountryData');
-        idCv.append(usersCountryDiv);
-    });
     const titroot = document.createElement('Div');
     const mg = document.createElement('Div');
     const cg = document.createElement('Div');
@@ -29,13 +20,15 @@ async function onload() {
     const cvtt = document.getElementById('cv');
     cvtt.append(titroot);
     document.getElementById("cont a2").appendChild(cvtt);
-
     if ("geolocation" in navigator) {
-        navigator.geolocation.getCurrentPosition(position => {
-            //console.log(position);
+        navigator.geolocation.getCurrentPosition(async position => {
+            const country = await fetch('https://ipapi.co/json/');
+            const countryJson = await country.json();
+            console.log(countryJson);
+            document.getElementById("usersCountryData").textContent = `${countryJson.country_name}`;
         });
     } else {
-        //console.log('Geolocation is not available.');
+        alert("Geolocation is not available.");
     }
 }
 
@@ -119,6 +112,15 @@ function plotting(datax, datay, id, title, dataSetInterval) {
         interval[1] = 202;
     }
 
+    if (document.getElementById("usersCountryDataChild")) {
+        const contentEmptyCountry = document.getElementById("usersCountryDataChild").textContent;    
+        if(contentEmptyCountry == "") {
+
+        } else {
+            document.getElementById("usersCountryDataChild").textContent = "";
+        }
+    }
+    
     var ct = document.getElementById(id).getContext('2d');
     //ct.setAttribute("style", "height: 400px;");
     const slicingx = datax.slice(interval[0], interval[1]);
@@ -559,7 +561,6 @@ function menuClicked() {
     divMenuChild2Button.setAttribute("id", "divMenuChild2Button");
     divMenuChild2Button.setAttribute("class", "menuLinkButtons");
 
-
     const divMenuChild3 = document.createElement('Div');
     divMenuChild3.setAttribute("class", "menuShowingUpChild3");
     divMenuChild3.setAttribute("id", "menuShowingUpChild3");
@@ -585,8 +586,12 @@ function menuClicked() {
         document.getElementById("divMenuChild1Button").appendChild(aboutsIcon);
         divMenuChild1Button.setAttribute("onClick", "aboutButton()");
 
+        const contactIcon = document.createElement('i');
+        contactIcon.setAttribute("class", "fas fa-map-pinfas fa-address-card fa-lg");
         document.getElementById("menuContent").append(divMenuChild2);
         document.getElementById("menuShowingUpChild2").append(divMenuChild2Button);
+        document.getElementById("divMenuChild2Button").textContent = `Contact `;
+        document.getElementById("divMenuChild2Button").appendChild(contactIcon);
 
         const locationIcon = document.createElement('i');
         locationIcon.setAttribute("class", "fas fa-map-pin fa-lg");
@@ -620,37 +625,48 @@ function aboutButton() {
 async function dataAtButton() {
     const countryForApiCall = document.getElementById("usersCountryData").textContent;
     const divVerification = document.getElementById("usersCountryDataChild").textContent;
-    if (divVerification == "") {
-        console.log("Div vacio");
-        const dataUsersCountry = await fetch(`https://coronavirus-19-api.herokuapp.com/countries/${countryForApiCall}`);
-        const dataCountry = await dataUsersCountry.json();
-        //console.log(dataCountry);
-        const country = document.createElement('Div');
-        const countrysCases = document.createElement('Div');
-        const countrysTodayCases = document.createElement('Div');
-        const countrysDeaths = document.createElement('Div');
-        const countrysRecovered = document.createElement('Div');
-        const countrysActive = document.createElement('Div');
-        const countrysCritical = document.createElement('Div');
-        const countrysCasesPerMillion = document.createElement('Div');
-        country.setAttribute("class" , "estado");
-        countrysCases.setAttribute("class" , "estado");
-        countrysTodayCases.setAttribute("class" , "estado");
-        countrysDeaths.setAttribute("class" , "estado");
-        countrysRecovered.setAttribute("class" , "estado");
-        countrysActive.setAttribute("class" , "estado");
-        countrysCritical.setAttribute("class" , "estado");
-        countrysCasesPerMillion.setAttribute("class" , "estado");
-        country.textContent = `${dataCountry.country}`;
-        countrysCases.textContent = `Cases: ${dataCountry.cases}`;
-        countrysTodayCases.textContent = `Today's new Cases: ${dataCountry.todayCases}`;
-        countrysDeaths.textContent = `Deaths: ${dataCountry.deaths}`;
-        countrysRecovered.textContent = `Recovered: ${dataCountry.recovered}`;
-        countrysActive.textContent = `Active: ${dataCountry.active}`;
-        countrysCritical.textContent = `Critical: ${dataCountry.critical}`;
-        countrysCasesPerMillion.textContent = `Cases per one million: ${dataCountry.casesPerOneMillion}`;
-        const breaking = document.createElement('br');
-        document.getElementById("usersCountryDataChild").append(country,countrysCases,countrysTodayCases,countrysDeaths,countrysRecovered,countrysActive,countrysCritical,countrysCasesPerMillion,breaking);
+    if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(async position => {
+            const country = await fetch('https://ipapi.co/json/');
+            const countryJson = await country.json();
+            console.log(countryJson);
+            document.getElementById("usersCountryData").textContent = `${countryJson.country_name}`;
+            if (divVerification == "") {
+                console.log("Div vacio");
+                const dataUsersCountry = await fetch(`https://coronavirus-19-api.herokuapp.com/countries/${countryJson.country_name}`);
+                const dataCountry = await dataUsersCountry.json();
+                //console.log(dataCountry);
+                const country = document.createElement('Div');
+                const countrysCases = document.createElement('Div');
+                const countrysTodayCases = document.createElement('Div');
+                const countrysDeaths = document.createElement('Div');
+                const countrysRecovered = document.createElement('Div');
+                const countrysActive = document.createElement('Div');
+                const countrysCritical = document.createElement('Div');
+                const countrysCasesPerMillion = document.createElement('Div');
+                country.setAttribute("class", "estado");
+                country.setAttribute("id", "countryUser");
+                countrysCases.setAttribute("class", "estado");
+                countrysTodayCases.setAttribute("class", "estado");
+                countrysDeaths.setAttribute("class", "estado");
+                countrysRecovered.setAttribute("class", "estado");
+                countrysActive.setAttribute("class", "estado");
+                countrysCritical.setAttribute("class", "estado");
+                countrysCasesPerMillion.setAttribute("class", "estado");
+                country.textContent = `${dataCountry.country}`;
+                countrysCases.textContent = `Cases: ${dataCountry.cases}`;
+                countrysTodayCases.textContent = `Today's new Cases: ${dataCountry.todayCases}`;
+                countrysDeaths.textContent = `Deaths: ${dataCountry.deaths}`;
+                countrysRecovered.textContent = `Recovered: ${dataCountry.recovered}`;
+                countrysActive.textContent = `Active: ${dataCountry.active}`;
+                countrysCritical.textContent = `Critical: ${dataCountry.critical}`;
+                countrysCasesPerMillion.textContent = `Cases per one million: ${dataCountry.casesPerOneMillion}`;
+                const breaking = document.createElement('br');
+                document.getElementById("usersCountryDataChild").append(country, countrysCases, countrysTodayCases, countrysDeaths, countrysRecovered, countrysActive, countrysCritical, countrysCasesPerMillion, breaking);
+            }
+        });
+    } else {
+        alert("Geolocaiton is not available.");
     }
     closeButton();
 }
