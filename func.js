@@ -2,6 +2,14 @@ onload();
 async function onload() {
     const titulo = await fetch('https://coronavirus-19-api.herokuapp.com/all');
     const cvt = await titulo.json();
+    const x = $.getJSON('http://ip-api.com/json/', async function (data) {
+        const usersCountryDiv = document.createElement('Div');
+        usersCountryDiv.setAttribute("id", "usersCountry");
+        usersCountryDiv.setAttribute("class", "country");
+        usersCountryDiv.textContent = `${data.country}`;
+        const idCv = document.getElementById('usersCountryData');
+        idCv.append(usersCountryDiv);
+    });
     const titroot = document.createElement('Div');
     const mg = document.createElement('Div');
     const cg = document.createElement('Div');
@@ -20,6 +28,14 @@ async function onload() {
     const cvtt = document.getElementById('cv');
     cvtt.append(titroot);
     document.getElementById("cont a2").appendChild(cvtt);
+
+    if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(position => {
+            //console.log(position);
+        });
+    } else {
+        //console.log('Geolocation is not available.');
+    }
 }
 
 async function collectData() {
@@ -527,7 +543,7 @@ function menuClicked() {
     divMenu.setAttribute("class", "menuShowingUp")
     divMenu.setAttribute("id", "menuContent")
     divMenu.setAttribute("style", "height: 400px; background-color: rgba(0, 0, 0, 0.5);");
-    
+
     const divMenuChild1 = document.createElement('Div');
     divMenuChild1.setAttribute("class", "menuShowingUpChild1");
     divMenuChild1.setAttribute("id", "menuShowingUpChild1");
@@ -542,20 +558,21 @@ function menuClicked() {
     divMenuChild2Button.setAttribute("id", "divMenuChild2Button");
     divMenuChild2Button.setAttribute("class", "menuLinkButtons");
 
-    
+
     const divMenuChild3 = document.createElement('Div');
     divMenuChild3.setAttribute("class", "menuShowingUpChild3");
     divMenuChild3.setAttribute("id", "menuShowingUpChild3");
     const divMenuChild3Button = document.createElement('button');
+    divMenuChild3Button.setAttribute("id", "divMenuChild3Button");
     divMenuChild3Button.setAttribute("class", "menuLinkButtons");
-    
+
     const divMenuChild4 = document.createElement('Div');
     divMenuChild4.setAttribute("class", "menuShowingUpChild4");
     divMenuChild4.setAttribute("id", "menuShowingUpChild4");
     const divMenuChild4Button = document.createElement('button');
     divMenuChild4Button.setAttribute("id", "divMenuChild4Button");
     divMenuChild4Button.setAttribute("class", "menuLinkButtons");
-    
+
     const headContentId = document.getElementById("menuContent");
     if (headContentId == null) {
         document.getElementById("headContent").append(divMenu);
@@ -563,22 +580,26 @@ function menuClicked() {
         aboutsIcon.setAttribute("class", "fas fa-skull-crossbones fa-lg");
         document.getElementById("menuContent").append(divMenuChild1);
         document.getElementById("menuShowingUpChild1").append(divMenuChild1Button);
-        document.getElementById("divMenuChild1Button").textContent = `ABOUT `;
+        document.getElementById("divMenuChild1Button").textContent = `About `;
         document.getElementById("divMenuChild1Button").appendChild(aboutsIcon);
         divMenuChild1Button.setAttribute("onClick", "aboutButton()");
-        
+
         document.getElementById("menuContent").append(divMenuChild2);
         document.getElementById("menuShowingUpChild2").append(divMenuChild2Button);
 
-        
+        const locationIcon = document.createElement('i');
+        locationIcon.setAttribute("class", "fas fa-map-pin fa-lg");
         document.getElementById("menuContent").append(divMenuChild3);
         document.getElementById("menuShowingUpChild3").append(divMenuChild3Button);
+        document.getElementById("divMenuChild3Button").textContent = `Data at ${document.getElementById("usersCountryData").textContent} `;
+        document.getElementById("divMenuChild3Button").appendChild(locationIcon);
+        divMenuChild3Button.setAttribute("onClick", "dataAtButton()");
 
         const closesIcon = document.createElement('i');
         closesIcon.setAttribute("class", "fas fa-times fa-lg");
         document.getElementById("menuContent").append(divMenuChild4);
         document.getElementById("menuShowingUpChild4").append(divMenuChild4Button);
-        document.getElementById("divMenuChild4Button").textContent = `CLOSE `;
+        document.getElementById("divMenuChild4Button").textContent = `Close `;
         document.getElementById("divMenuChild4Button").appendChild(closesIcon);
         divMenuChild4Button.setAttribute("onClick", "closeButton()");
     } else {
@@ -595,19 +616,55 @@ function aboutButton() {
     alert("This website presents information about the Covid-19 pandemic.");
 }
 
-
+async function dataAtButton() {
+    const countryForApiCall = document.getElementById("usersCountryData").textContent;
+    const divVerification = document.getElementById("usersCountryDataChild").textContent;
+    if (divVerification == "") {
+        console.log("Div vacio");
+        const dataUsersCountry = await fetch(`https://coronavirus-19-api.herokuapp.com/countries/${countryForApiCall}`);
+        const dataCountry = await dataUsersCountry.json();
+        console.log(dataCountry);
+        const country = document.createElement('Div');
+        const countrysCases = document.createElement('Div');
+        const countrysTodayCases = document.createElement('Div');
+        const countrysDeaths = document.createElement('Div');
+        const countrysRecovered = document.createElement('Div');
+        const countrysActive = document.createElement('Div');
+        const countrysCritical = document.createElement('Div');
+        const countrysCasesPerMillion = document.createElement('Div');
+        country.setAttribute("class" , "estado");
+        countrysCases.setAttribute("class" , "estado");
+        countrysTodayCases.setAttribute("class" , "estado");
+        countrysDeaths.setAttribute("class" , "estado");
+        countrysRecovered.setAttribute("class" , "estado");
+        countrysActive.setAttribute("class" , "estado");
+        countrysCritical.setAttribute("class" , "estado");
+        countrysCasesPerMillion.setAttribute("class" , "estado");
+        country.textContent = `${dataCountry.country}`;
+        countrysCases.textContent = `Cases: ${dataCountry.cases}`;
+        countrysTodayCases.textContent = `Today's new Cases: ${dataCountry.todayCases}`;
+        countrysDeaths.textContent = `Deaths: ${dataCountry.deaths}`;
+        countrysRecovered.textContent = `Recovered: ${dataCountry.recovered}`;
+        countrysActive.textContent = `Active: ${dataCountry.active}`;
+        countrysCritical.textContent = `Critical: ${dataCountry.critical}`;
+        countrysCasesPerMillion.textContent = `Cases per one million: ${dataCountry.casesPerOneMillion}`;
+        const breaking = document.createElement('br');
+        document.getElementById("usersCountryDataChild").append(country,countrysCases,countrysTodayCases,countrysDeaths,countrysRecovered,countrysActive,countrysCritical,countrysCasesPerMillion,breaking);
+    }
+    closeButton();
+}
 
 
 
 /*Must understand this code.
 document.addEventListener('keydown', (event) => {
     const keyName = event.key;
-  
+
     if (keyName === 'Control') {
       // do not alert when only Control key is pressed.
       return;
     }
-  
+
     if (event.ctrlKey) {
       // Even though event.key is not 'Control' (e.g., 'a' is pressed),
       // event.ctrlKey may be true if Ctrl key is pressed at the same time.
@@ -616,10 +673,10 @@ document.addEventListener('keydown', (event) => {
       alert(`Key pressed ${keyName}`);
     }
   }, false);
-  
+
   document.addEventListener('keyup', (event) => {
     const keyName = event.key;
-  
+
     // As the user releases the Ctrl key, the key is no longer active,
     // so event.ctrlKey is false.
     if (keyName === 'Control') {

@@ -448,3 +448,7 @@
         width: 100%;
         background-color: rgba(230, 0, 120, 0.2);
     }
+
+    .country {
+        font-size: 0px;
+    }
