@@ -514,7 +514,7 @@ function sumatoriaElementosArray(array) {
     for (i = 0; i <= array.length - 1; i++) {
         sumatoria = sumatoria + array[i];
     }
-    return sumatoria;
+    return sumatoria / 2;
 };
 
 function setIntervalButtonLeft() {
