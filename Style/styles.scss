@@ -1,0 +1,466 @@
+/*Defaults*/
+$greenColor: rgba(255, 0, 100, 0.2);
+$secundaryColor: rgb(255, 0, 100);
+$secundaryShadow: rgba(255, 0, 100, 0.5);
+$white: white;
+$Black1: #222222;
+$lightBlack: #2b2b2b;
+$gray: #444;
+
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  border: 0;
+  background-color: $white;
+  font-size: 18px;
+  font-family: 'Baloo Da 2', 'Franklin Gothic Medium', 'Arial Narrow', Arial,
+    sans-serif, Helvetica;
+}
+
+.contenedor {
+  display: grid;
+  grid-template-columns: [first] 100% [end];
+  grid-template-rows: [header] 12.5% [body] auto [footer] 370px [end];
+  grid-gap: 1px;
+  /*Las 3 siguientes lineas de codigo producen que el #contener llene por completo el cuerpo de la pagina.*/
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  grid-template-areas:
+    'header'
+    'main'
+    'footer';
+}
+
+.box {
+  border-radius: 0 0 0 1px;
+}
+
+.a {
+  display: grid;
+  grid-area: header;
+  grid-column: 1 / end;
+  grid-row: 1 / 2;
+  background: repeating-linear-gradient(
+      45deg,
+      $greenColor 0%,
+      $lightBlack 2%,
+      $Black1,
+      $Black1 50%
+    )
+    0 / 150px 150px;
+  box-shadow: 0 0 10px 10px $secundaryShadow;
+  position: fixed;
+  justify-items: stretch;
+  width: 100%;
+  height: 12.5%;
+  grid-template-columns: [logo] 70% [links] auto [end];
+  grid-template-rows: [ndd] 99% [ndd1] 1% [end];
+  grid-gap: 0;
+  color: $greenColor;
+}
+
+.menuShowingUp {
+  display: grid;
+  grid-row: 2 / end;
+  grid-column: 1 / 3;
+  grid-template-rows: 100px 100px 100px 100px;
+  grid-template-columns: 100%;
+}
+
+.menuShowingUpChild1 {
+  grid-row: 1 / 2;
+  grid-column: 1 / end;
+  justify-self: stretch;
+}
+
+.menuShowingUpChild2 {
+  grid-row: 2 / 3;
+  grid-column: 1 / end;
+  justify-self: stretch;
+}
+
+.menuShowingUpChild3 {
+  grid-row: 3 / 4;
+  grid-column: 1 / end;
+  justify-self: stretch;
+}
+
+.menuShowingUpChild4 {
+  grid-row: 4 / end;
+  grid-column: 1 / end;
+  justify-self: stretch;
+}
+
+.Navea {
+  display: grid;
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  grid-template-columns: [fa] 5% [fb] auto [fc] 5% [end];
+  grid-template-rows: [fd] 20% [fe] auto [fg] 20% [end];
+  justify-items: stretch;
+  color: $secundaryColor;
+}
+
+.NaveaSon {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  place-self: center stretch;
+  font-size: 20px;
+}
+
+.NavMenu {
+  display: grid;
+  grid-column: 2 / 3;
+  grid-row: 1 / end;
+  justify-items: stretch;
+  grid-template-columns: [r1] 10% [r2] auto [r3] 10% [end];
+  grid-template-rows: [fd] 20% [fe] auto [ff] 20%[end];
+  color: $secundaryColor;
+}
+
+.NaveMenuSon {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+}
+
+.bodyContent {
+  grid-area: main;
+  grid-column: first / end;
+  grid-row: body / span 1;
+  background: repeating-linear-gradient(
+      45deg,
+      $greenColor 0%,
+      $lightBlack 10%,
+      $Black1,
+      $Black1 100%
+    )
+    0 / 5px 5px;
+}
+
+.estado {
+  text-align: center;
+  font-size: 2rem;
+  color: $secundaryColor;
+}
+
+.c {
+  display: grid;
+  grid-area: footer;
+  grid-column: first / end;
+  grid-row: footer / span 1;
+  background: $lightBlack;
+  justify-items: stretch;
+  grid-template-columns: [s1] 25% [s2] 25% [s3] 25% [s7] 25% [end];
+  grid-template-rows: [s4] 20% [s5] 20% [s6] 20% [s8] 20% [s9] 20% [end];
+}
+
+.socialMedia {
+  justify-items: stretch;
+  grid-row: 3 / 4;
+  grid-column: 2 / 4;
+  text-align: center;
+}
+
+.contenedor1 {
+  display: grid;
+  grid-template-columns: 0% 80%;
+  grid-template-rows: [num1] 100px [contenido1] auto [num2] auto [end];
+  grid-gap: 0px;
+  color: $greenColor;
+  justify-items: stretch;
+  grid-template-areas:
+    'costadoiz' 'content' 'costadoder'
+    'costadoiz' 'content' 'costadoder'
+    'costadoiz' 'content' 'costadoder';
+}
+
+.covid19 {
+  grid-column: 1 / 5;
+  grid-row: 1 / 2;
+  place-self: center stretch;
+}
+
+.a1 {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  justify-items: stretch;
+}
+
+.a2 {
+  grid-column: 2 / 5;
+  grid-row: 3 / num2;
+}
+
+.navigationData {
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  grid-template-rows: auto 20%;
+  justify-items: center;
+  color: $secundaryColor;
+}
+
+.navigationLeft {
+  place-self: end;
+  width: 50%;
+  height: 100%;
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+}
+
+.navigationValue {
+  width: 50%;
+  height: 100%;
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  font-size: 1rem;
+}
+
+.navigationRight {
+  place-self: start;
+  width: 50%;
+  height: 100%;
+  grid-column: 3 / end;
+  grid-row: 1 / 2;
+}
+
+.a3 {
+  display: grid;
+  grid-template-columns: [firstM] 98% [linea] 2% [end];
+  grid-template-rows: [f1] 100px [contenido1] 75px [num2] 75px [num3] 75px [num4] 75px [end];
+  grid-column: 3 / end;
+  grid-row: 2 / num2;
+  justify-items: stretch;
+  gap: 1%;
+}
+
+/*Styling the menu*/
+.ma {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+}
+
+.mb {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+}
+
+.mc {
+  grid-column: 1 / 2;
+  grid-row: 3 / 4;
+}
+
+.md {
+  grid-column: 1 / 2;
+  grid-row: 4 / 5;
+}
+
+.me {
+  grid-column: 1 / 2;
+  grid-row: 5 / end;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+/*Nav bar*/
+nav {
+  overflow: hidden;
+}
+
+.navul:hover {
+  color: $secundaryColor;
+  text-shadow: 0 0 10px $secundaryShadow;
+}
+
+.navul {
+  text-align: center;
+  list-style-type: none;
+}
+
+.logo {
+  display: inline-block;
+}
+
+.logox {
+  text-decoration: none;
+  line-height: 50px;
+  text-transform: uppercase;
+  padding: 0;
+  color: $secundaryColor;
+  border-radius: 5px;
+}
+
+.logox:hover {
+  border: 2px solid $secundaryColor;
+  background: $secundaryShadow;
+  box-shadow: 0 -9px 0 0 $secundaryColor;
+  border-bottom: 10px solid $secundaryColor;
+}
+
+.menuLink {
+  text-align: center;
+  border-radius: 12px;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  color: $secundaryColor;
+  font-size: 18px;
+  background-color: $gray;
+  border-color: $greenColor;
+}
+
+.menuLinkButtons {
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  color: $secundaryColor;
+  font-size: 2rem;
+  background-color: $lightBlack;
+  border-color: $gray;
+}
+
+.menuLinkButtons:hover {
+  border: 2px solid $secundaryColor;
+  background: $secundaryShadow;
+  box-shadow: 0 -10px 10px 28px $secundaryShadow;
+  border-bottom: 3px solid $secundaryShadow;
+  animation: border-flicker 2s linear forwards;
+  font-size: 2rem;
+}
+
+.linksFooter {
+  color: white;
+}
+
+.menuLink:hover {
+  border: 2px solid $secundaryColor;
+  background: $secundaryShadow;
+  box-shadow: 0 -10px 10px 28px $secundaryShadow;
+  border-bottom: 3px solid $secundaryShadow;
+  animation: border-flicker 2s linear forwards;
+}
+
+.linksFooter:hover {
+  color: $secundaryShadow;
+}
+
+.neon {
+  text-align: center;
+  border-radius: 12px;
+  border-color: $greenColor;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  color: $secundaryColor;
+  font-size: 16px;
+  background-color: $gray;
+}
+
+.neon:hover {
+  animation: border-flicker 2s linear forwards;
+}
+
+@keyframes border-flicker {
+  2% {
+    border: 3px solid $greenColor;
+    box-shadow: 0 0 15px -1px $greenColor, 0 0 12px -1px $greenColor;
+    color: $secundaryColor;
+    text-shadow: 0 0 15px $secundaryColor;
+  }
+
+  3% {
+    border: 3px solid $lightBlack;
+    box-shadow: none;
+    color: $secundaryShadow;
+    text-shadow: none;
+  }
+
+  5% {
+    border: 3px solid $greenColor;
+    box-shadow: 0 0 15px -1px $greenColor, 0 0 12px -1px $greenColor inset;
+  }
+
+  6% {
+    border: 3px solid $lightBlack;
+    box-shadow: none;
+    color: $secundaryColor;
+    text-shadow: 0 0 15px $secundaryColor;
+  }
+
+  7% {
+    border: 3px solid $greenColor;
+    box-shadow: 0 0 15px -1px $greenColor, 0 0 12px -1px $greenColor inset;
+  }
+
+  9% {
+    border: 3px solid $lightBlack;
+    box-shadow: none;
+    color: $secundaryShadow;
+    text-shadow: none;
+  }
+
+  13% {
+    border: 3px solid $lightBlack;
+    box-shadow: 0 0 15px -1px $lightBlack, 0 0 12px -1px $lightBlack inset;
+  }
+
+  16% {
+    border: 3px solid $lightBlack;
+    box-shadow: none;
+  }
+
+  18% {
+    border: 3px solid $greenColor;
+    box-shadow: 0 0 15px -1px $greenColor, 0 0 12px -1px $greenColor inset;
+  }
+
+  22% {
+    border: 3px solid $lightBlack;
+    box-shadow: none;
+  }
+
+  34% {
+    border: 3px solid $greenColor;
+    box-shadow: 0 0 15px -1px $greenColor, 0 0 12px -1px $greenColor inset;
+  }
+
+  36% {
+    border: 3px solid $lightBlack;
+    box-shadow: none;
+  }
+
+  54% {
+    border: 3px solid $greenColor;
+    box-shadow: 0 0 15px -1px $greenColor, 0 0 12px -1px $greenColor inset;
+  }
+
+  100% {
+    border: 3px solid $greenColor;
+    box-shadow: 0 0 15px -1px $greenColor, 0 0 12px -1px $greenColor inset;
+    color: $secundaryColor;
+    text-shadow: 0 0 15px $secundaryColor;
+  }
+}
+
+.menuShowingUp {
+  height: 200px;
+  width: 100%;
+  background-color: $secundaryShadow;
+}
+
+.country {
+  font-size: 0px;
+}
